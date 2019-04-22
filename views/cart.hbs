@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script
+  /src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script>
+    
+    $(()=>{
+      console.log('kjsjna')
+  $.get('/items',(data)=>{
+for(let item of data){
+loadnew(item)
+}
+})
+function loadnew(data){
+  $('#list').append(
+    $('<li>').text(
+      `${data.from}:${data.msg}`
+
+    ))
+    }
+    $('#btn').click(()=>{
+      if( $('#chats').val().startsWith('@')){   
+  $.post('/items',{
+    msg:$('#chats').val().split(':')[1],
+    to:$('#chats').val().split(':')[0].substr(1)
+      })}
+    })
+      
+      }
+      )
+  </script>
+</head>
+<body>
+  <h1>My Chats</h1>
+  <button onclick="myfun()">EXPLORE MORE</button><br><br>
+  <script>
+    function myfun(){
+    location.replace("http://localhost:2122/ind.html")}
+  </script>
+    <input id="chats">
+    <button id="btn">send</button>
+  <h2>Chats </h2>
+  <b>write your chat as @reciever:message</b>
+  <ul id="list">
+        </ul>
+        
+</body>
+
+
+</html>
